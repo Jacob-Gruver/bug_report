@@ -16,7 +16,8 @@ class BugService {
   }
 
   async edit(id, body) {
-    const editData = await dbContext.Bugs.findByIdAndUpdate(id, body)
+    const editData = await dbContext.Bugs.findOneAndUpdate({ _id: id, creatorEmail: body.creatorEmail }, body, { new: true })
+    // NOTE use findOneand update
     return editData
   }
 }

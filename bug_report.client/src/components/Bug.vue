@@ -1,14 +1,17 @@
 <template>
   <div class="Bugs container-fluid">
-    <router-link :to="{ name: 'BugDetails', params: { id: bugProp } }">
+    <router-link :to="{ name: 'BugDetails', params: { id: bugProp.id } }">
+      <!-- NOTE change color on this router link if its closed -->
       <div class="row">
         <div class="col">
           <h1>
             {{ bugProp.title }}
           </h1>
           <p>
-            {{ bugProp.description }}
             {{ bugProp.id }}
+          </p>
+          <p v-if="bugProp.closed === true" class="text-danger">
+            Bug Closed {{ bugProp.title }}
           </p>
         </div>
       </div>

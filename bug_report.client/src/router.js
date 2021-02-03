@@ -19,7 +19,8 @@ const routes = [
   {
     path: '/bugdetails/:id',
     name: 'BugDetails',
-    component: loadPage('BugDetails')
+    component: loadPage('BugDetails'),
+    beforeEnter: authGuard
   },
   {
     path: '/account',

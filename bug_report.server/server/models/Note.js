@@ -6,7 +6,7 @@ const Note = new Schema({
   content: { type: String, required: true },
   bug: { type: ObjectId, ref: 'Bug', required: true },
   flagged: { type: String, enum: ['pending', 'completed', 'rejected'], default: 'pending' },
-  creatorEmail: { type: String, required: true }
+  creatorEmail: { type: String, ref: 'Account', required: true }
 },
 { timestamps: true, toJSON: { virtuals: true } })
 

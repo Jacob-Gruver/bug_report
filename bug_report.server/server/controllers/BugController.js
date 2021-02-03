@@ -11,6 +11,7 @@ export class BugController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:id', this.getOne)
       .get('/:id/notes', this.getNotes)
+      // NOTE this route is good
       .post('', this.create)
       .put('/:id', this.edit)
   }

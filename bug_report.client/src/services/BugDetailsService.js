@@ -2,33 +2,81 @@ import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
-const bugApi = '/api/bugs/'
+const noteApi = '/api/notes'
+const bugApi = '/api/bugs'
 
 class BugDetailsService {
-  async editBug(event, id, status, auth) {
+  async getBug(id) {
     try {
-      if (status === false) {
-        const editB = { title: event.title, description: event.description, creatorEmail: auth }
-        await api.put(bugApi + id, editB)
-      }
+      const res = await api.get(bugApi + '/' + id)
+      logger.log('get bug from the details service', res)
+      AppState.bug = res.data
     } catch (error) {
       logger.error(error)
     }
   }
 
-  async getComments(bugId) {
+  async getComments(id) {
     try {
-      const res = await api.get(bugApi + bugId + '/notes')
+      const res = await api.get(bugApi + '/' + id + '/notes')
       AppState.comments = res.data
     } catch (error) {
       logger.error(error)
     }
   }
 
-  async addNewComment(bugId, newComment) {
+  async editBugTitle(event, id, status) {
     try {
-      const res = await api.post(bugApi + bugId + '/notes', newComment)
-      AppState.comment = res.data
+      if (status === false) {
+        debugger
+        const editB = { title: event }
+        await api.put(bugApi + '/' + id, editB)
+      }
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async editBugDescription(event, id, status) {
+    try {
+      if (status === false) {
+        debugger
+        const editB = { description: event }
+        await api.put(bugApi + '/' + id, editB)
+      }
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async editBugStatus(status, id) {
+    try {
+      debugger
+      const newStatus = await api.put(bugApi + '/' + id, status)
+      this.getBug(id)
+      logger.log(newStatus)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async addNewComment(newComment) {
+    try {
+      const res = await api.post(noteApi, newComment)
+      AppState.comments.push(res.data)
+      logger.log('add new comment', res.data)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async removeComment(id) {
+    try {
+      debugger
+      const res = await api.delete('/api/notes/' + id)
+      AppState.comments = AppState.comments.filter(i => i.id !== id)
+
+      logger.log(res)
     } catch (error) {
       logger.error(error)
     }

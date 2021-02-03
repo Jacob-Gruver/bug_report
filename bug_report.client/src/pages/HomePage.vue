@@ -29,9 +29,14 @@
     </div>
     <div class="row">
       <div class="col">
-        <!-- <router-link :to="{ name: 'BugDetails', params: { id: } }"> -->
+        <button class="btn btn-outline-danger" @click="AllClosedBugs">
+          All Closed Bugs
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
         <Bugs v-for="bug in state.bugs" :key="bug.id" :bug-prop="bug" />
-      <!-- </router-link> -->
       </div>
     </div>
   </div>
@@ -71,6 +76,10 @@ export default {
         } catch (error) {
           logger.error(error)
         }
+      },
+      async AllClosedBugs() {
+        // homeService.AllClosedBugs()
+        state.bugs.filter()
       }
     }
   }

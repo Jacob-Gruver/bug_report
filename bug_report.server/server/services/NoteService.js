@@ -2,7 +2,7 @@ import { dbContext } from '../db/DbContext'
 
 class NoteService {
   async getAll(query = {}) {
-    return await dbContext.Notes.find(query).populate('bugs')
+    return await dbContext.Notes.find(query).populate('creator')
   }
 
   async getOne(id) {
@@ -10,7 +10,8 @@ class NoteService {
   }
 
   async create(body) {
-    return await (await dbContext.Notes.create(body)).populate('creator')
+    const test = await dbContext.Notes.create(body)
+    return test
   }
 
   async edit(id, body) {
