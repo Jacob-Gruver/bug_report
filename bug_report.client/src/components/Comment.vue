@@ -1,5 +1,5 @@
 <template>
-  <div class="Comments container-fluid">
+  <div class="Comments container">
     <div class="row">
       <div class="col">
         <h5>
@@ -40,7 +40,7 @@
                     <button type="button" class="btn btn-grey" data-dismiss="modal">
                       Cancel
                     </button>
-                    <button type="button" class="btn btn-danger" @click="removeComment(commentProp.id)">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" @click="removeComment(commentProp.id)">
                       Delete
                     </button>
                   </div>
@@ -49,13 +49,13 @@
             </div>
 
             <div class="row">
-              <button @click="editFlagged({flagged: 'pending'})" class="btn btn-secondary mx-2">
+              <button @click="editFlagged({flagged: 'pending'}, commentProp.id)" class="btn btn-secondary mx-2">
                 Pending
               </button>
-              <button @click="editFlagged({flagged: 'completed'})" class="btn btn-secondary mx-2">
+              <button @click="editFlagged({flagged: 'completed'}, commentProp.id)" class="btn btn-secondary mx-2">
                 Completed
               </button>
-              <button @click="editFlagged({flagged: 'rejected'})" class="btn btn-secondary mx-2">
+              <button @click="editFlagged({flagged: 'rejected'}, commentProp.id)" class="btn btn-secondary mx-2">
                 Rejected
               </button>
             </div>
@@ -85,9 +85,13 @@ export default {
     onMounted(() => {
     })
     return {
-      // async editFlagged(choice) {
-
-      // }
+      async editFlagged(choice, id) {
+        try {
+          bugDetailsService.editFlagged(choice, id)
+        } catch (error) {
+          logger.error(error)
+        }
+      },
       async removeComment(id) {
         try {
           bugDetailsService.removeComment(id)

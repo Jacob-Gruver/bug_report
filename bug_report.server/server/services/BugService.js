@@ -1,3 +1,4 @@
+// import { query } from 'express'
 import { dbContext } from '../db/DbContext'
 
 class BugService {
@@ -19,6 +20,11 @@ class BugService {
     const editData = await dbContext.Bugs.findOneAndUpdate({ _id: id, creatorEmail: body.creatorEmail }, body, { new: true })
     // NOTE use findOneand update
     return editData
+  }
+
+  async getClosed(query = {}) {
+    const closed = await dbContext.Bugs.find(query)
+    return closed
   }
 }
 

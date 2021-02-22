@@ -1,5 +1,5 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <div class="home flex-grow-1 d-flex flex-column container">
     <!-- <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo">
     <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
       <span class="mx-2 text-white">Vue 3 Starter</span>
@@ -7,21 +7,31 @@
     <div class="row">
       <div class="col">
         <form>
-          <input type="text"
-                 name="title"
-                 title="title"
-                 class="form-control"
-                 placeholder="Add Title"
-                 v-model="state.newBug.title"
-          >
-          <input type="text"
-                 name="description"
-                 title="description"
-                 class="form-control"
-                 placeholder="Add description"
-                 v-model="state.newBug.description"
-          >
-          <button type="button" @click="addNewBug" class="btn btn-primary">
+          <div class="row p-2">
+            <div class="col-xs-2">
+              <input type="text"
+                     name="title"
+                     title="title"
+                     class="form-control"
+                     placeholder="Add Title"
+                     data-maxlength="16"
+                     v-model="state.newBug.title"
+              >
+            </div>
+          </div>
+          <div class="row p-2">
+            <div class="col-xs-4">
+              <input type="text"
+                     name="description"
+                     title="description"
+                     class="form-control"
+                     placeholder="Add description"
+                     data-maxlength="150"
+                     v-model="state.newBug.description"
+              >
+            </div>
+          </div>
+          <button type="button" @click="addNewBug" class="btn btn-primary pt-2">
             Create
           </button>
         </form>
@@ -33,8 +43,6 @@
           All Closed Bugs
         </button>
       </div>
-    </div>
-    <div class="row">
       <div class="col">
         <Bugs v-for="bug in state.bugs" :key="bug.id" :bug-prop="bug" />
       </div>

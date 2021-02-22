@@ -132,6 +132,8 @@ export default {
           logger.error(error)
         }
       }
+      // async editDate(state.bug.updatedAt) {
+      // }
     }
   }
 }

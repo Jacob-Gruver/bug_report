@@ -60,6 +60,18 @@ class BugDetailsService {
     }
   }
 
+  async editFlagged(choice, id) {
+    try {
+      debugger
+      const newFlagged = await api.put(noteApi + '/' + id, choice)
+      this.getComments()
+      logger.log('logging from details service', newFlagged)
+      // AppState.comments
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
   async addNewComment(newComment) {
     try {
       const res = await api.post(noteApi, newComment)
@@ -72,7 +84,6 @@ class BugDetailsService {
 
   async removeComment(id) {
     try {
-      debugger
       const res = await api.delete('/api/notes/' + id)
       AppState.comments = AppState.comments.filter(i => i.id !== id)
 

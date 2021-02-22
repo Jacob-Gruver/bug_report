@@ -8,6 +8,7 @@ export class BugController extends BaseController {
     super('api/bugs')
     this.router
       .get('', this.getAll)
+      // .get('/', this.getClosed)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:id', this.getOne)
       .get('/:id/notes', this.getNotes)
@@ -39,7 +40,15 @@ export class BugController extends BaseController {
       const noteData = await noteService.getAll({ bug: req.params.id })
       return res.send(noteData)
     } catch (error) {
+      next(error)
+    }
+  }
 
+  async getClosed(req, res, next) {
+    try {
+      return res.send(await bugService.getClosed(req.query))
+    } catch (error) {
+      next(error)
     }
   }
 
