@@ -4,7 +4,7 @@
     <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
       <span class="mx-2 text-white">Vue 3 Starter</span>
     </h1> -->
-    <div class="row">
+    <div class="row pl-3 pt-2">
       <div class="col">
         <form>
           <div class="row p-2">
