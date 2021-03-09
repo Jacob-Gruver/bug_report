@@ -1,6 +1,6 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column container">
-    <!-- <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo">
+  <div class="home flex-grow-1 d-flex">
+    <!-- <img src="../assets/img/inGen.png" alt="CodeWorks Logo">
     <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
       <span class="mx-2 text-white">Vue 3 Starter</span>
     </h1> -->
@@ -31,7 +31,7 @@
               >
             </div>
           </div>
-          <button type="button" @click="addNewBug" class="btn btn-primary pt-2">
+          <button type="button" @click="addNewBug" class=" pt-2">
             Create
           </button>
         </form>
@@ -39,9 +39,9 @@
     </div>
     <div class="row">
       <div class="col">
-        <button class="btn btn-outline-danger" @click="AllClosedBugs">
+        <!-- <button class="btn btn-outline-danger" @click="AllClosedBugs">
           All Closed Bugs
-        </button>
+        </button> -->
       </div>
       <div class="col">
         <Bugs v-for="bug in state.bugs" :key="bug.id" :bug-prop="bug" />
@@ -102,5 +102,9 @@ export default {
     height: 200px;
     width: 200px;
   }
+  background-image: url(../assets/img/jplogo.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 </style>

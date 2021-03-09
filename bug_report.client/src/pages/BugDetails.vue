@@ -10,15 +10,15 @@
         <h2 v-if="state.bug.closed === false" :contenteditable="state.editBug" @blur="editBugTitle($event)">
           {{ state.bug.title }}
         </h2>
+        <h2 v-else class="text-danger">
+          Bug closed
+        </h2>
         <p v-if="state.bug.closed === false" :contenteditable="state.editBug" @blur="editBugDescription($event)">
           {{ state.bug.description }}
         </p>
         <p>
           {{ state.bug.updatedAt }}
         </p>
-        <h2 v-if="state.bug.closed !== false" class="text-danger">
-          Bug closed
-        </h2>
       </div>
       <button v-if="state.bug.closed === false" class="btn btn-warning" type="button" data-toggle="modal" data-target="#modelId">
         close
