@@ -1,5 +1,5 @@
 <template>
-  <div class="home flex-grow-1 d-flex">
+  <div class="home flex-grow-1 d-flex flex-column">
     <!-- <img src="../assets/img/inGen.png" alt="CodeWorks Logo">
     <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
       <span class="mx-2 text-white">Vue 3 Starter</span>
@@ -43,7 +43,7 @@
           All Closed Bugs
         </button> -->
       </div>
-      <div class="col">
+      <div class="col-12">
         <Bugs v-for="bug in state.bugs" :key="bug.id" :bug-prop="bug" />
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img
@@ -35,7 +35,7 @@
       </ul>
       <span class="navbar-text">
         <button
-          class="btn btn-outline-primary text-uppercase"
+          class="text-uppercase"
           @click="login"
           v-if="!user.isAuthenticated"
         >
@@ -61,16 +61,16 @@
             @click="state.dropOpen = false"
           >
             <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item list-group-item-action hoverable">
+              <button class="list-group-item list-group-item-action hoverable">
                 Account
-              </div>
+              </button>
             </router-link>
-            <div
+            <button
               class="list-group-item list-group-item-action hoverable"
               @click="logout"
             >
               logout
-            </div>
+            </button>
           </div>
         </div>
       </span>
@@ -125,6 +125,6 @@ a:hover {
   text-transform: uppercase;
 }
 .nav-item .nav-link.router-link-exact-active{
-  color: var(--primary);
+  color: var(--dark);
 }
 </style>
